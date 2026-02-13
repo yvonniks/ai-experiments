@@ -16,7 +16,7 @@ const HeartIcon = ({ style, emoji, delay }) => (
 );
 
 function App() {
-  const [quote, setQuote] = useState("A tiny generator for big self-love. Take a quote, keep the energy, and remember you’re the main character.");
+  const [quote, setQuote] = useState("Tap the button below for your affirmation ✨");
   const [hearts, setHearts] = useState([]);
   const [isInitial, setIsInitial] = useState(true);
 
@@ -53,6 +53,18 @@ function App() {
       <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blush rounded-full blur-3xl opacity-50" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-pastel-pink rounded-full blur-3xl opacity-50" />
 
+      {/* Additional Subtle Decorations */}
+      <div className="absolute top-[20%] left-[15%] text-pink-200/40 text-4xl pointer-events-none select-none">💖</div>
+      <div className="absolute top-[60%] right-[10%] text-pink-200/40 text-3xl pointer-events-none select-none">✨</div>
+      <div className="absolute bottom-[20%] left-[10%] text-pink-200/40 text-2xl pointer-events-none select-none">💗</div>
+      <div className="absolute top-[15%] right-[20%] text-pink-200/40 text-2xl pointer-events-none select-none">✨</div>
+
+      {/* Corner Decorations */}
+      <div className="absolute top-8 left-8 text-2xl md:text-3xl opacity-70 pointer-events-none select-none">🌸</div>
+      <div className="absolute top-8 right-8 text-2xl md:text-3xl opacity-70 pointer-events-none select-none">💕</div>
+      <div className="absolute bottom-8 left-8 text-2xl md:text-3xl opacity-70 pointer-events-none select-none">✨</div>
+      <div className="absolute bottom-8 right-8 text-2xl md:text-3xl opacity-70 pointer-events-none select-none">💗</div>
+
       {/* Floating Hearts Container */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {hearts.map(heart => (
@@ -69,11 +81,24 @@ function App() {
       </div>
 
       {/* Main Container */}
-      <main className="z-10 w-full max-w-2xl flex flex-col items-center gap-8 text-center">
+      <main className="z-10 w-full max-w-2xl flex flex-col items-center gap-6 md:gap-8 text-center mt-12 mb-8">
+        {/* Header Section */}
+        <header className="flex flex-col gap-2 md:gap-4 mb-2">
+          <p className="text-soft-rose font-serif uppercase tracking-[0.3em] text-xs md:text-sm">
+            Happy Valentine's Day
+          </p>
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-serif text-[#3D2B2B] leading-tight">
+            Love Yourself First
+          </h1>
+          <p className="text-soft-rose font-body text-base md:text-lg lg:text-xl">
+            A little reminder that you are worthy of your own love 💗
+          </p>
+        </header>
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-white/40 backdrop-blur-lg border border-white/40 p-8 md:p-12 rounded-[2rem] shadow-xl w-full"
+          className="bg-white/40 backdrop-blur-lg border border-white/40 p-8 md:p-12 rounded-[2rem] shadow-soft w-full"
           aria-live="polite"
         >
           <AnimatePresence mode="wait">
@@ -94,13 +119,16 @@ function App() {
 
         <motion.button
           type="button"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          transition={{ type: "spring", stiffness: 400, damping: 17 }}
           onClick={getNewQuote}
-          className="group relative bg-soft-rose hover:bg-deep-rose text-white px-8 py-4 rounded-full text-xl font-serif shadow-lg transition-colors flex items-center gap-2 overflow-hidden"
+          className="group relative bg-soft-rose hover:bg-deep-rose text-white px-10 py-4 rounded-full text-xl font-serif shadow-button transition-colors duration-500 flex items-center gap-2 overflow-hidden"
         >
           <motion.span
-            className="absolute inset-0 bg-white/20 transform -translate-x-full group-hover:translate-x-full transition-transform duration-500"
+            initial={{ opacity: 0 }}
+            whileHover={{ opacity: 1 }}
+            className="absolute inset-0 bg-white/10 transition-opacity duration-500"
           />
           Give me some love
           <Heart className="w-5 h-5 fill-current" />
@@ -108,9 +136,9 @@ function App() {
       </main>
 
       {/* Footer */}
-      <footer className="mt-auto py-8 text-soft-rose font-body text-sm md:text-base text-center z-10">
-        <p>Don't forget to love yourself first.</p>
-        <p>Built with love from Yvonne So, February 2026</p>
+      <footer className="mt-auto py-8 text-soft-rose font-body text-sm md:text-base text-center z-10 space-y-1">
+        <p>Made with love, for you 🌹</p>
+        <p className="text-xs opacity-80">By Yvonne So</p>
       </footer>
     </div>
   );
